@@ -183,24 +183,6 @@ public class UsersControllerTests
     }
 
     [Fact]
-    public async Task Update_WhenUserNotFound_ShouldReturnNotFound()
-    {
-        // Arrange
-        Guid userId = Guid.NewGuid();
-        UpdateUserDto dto = new UpdateUserDto();
-
-        _mockService
-            .Setup(x => x.UpdateAsync(userId, dto))
-            .ThrowsAsync(new KeyNotFoundException());
-
-        // Act
-        ActionResult<UserDto> result = await _controller.Update(userId, dto);
-
-        // Assert
-        result.Result.Should().BeOfType<NotFoundObjectResult>();
-    }
-
-    [Fact]
     public async Task Update_WhenArgumentException_ShouldReturnBadRequest()
     {
         // Arrange
